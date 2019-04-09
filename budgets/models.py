@@ -8,32 +8,29 @@ from django.db import models
 class Budget(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='budgets')
     name = models.CharField(max_length=180, default='Untitled')
-    total_budget = models.FloatField(blank=True, null=True)
-    remaining_budget = models.FloatField(blank=True, null=True)
-
-    date_uploaded = models.DateField(auto_now_add=True)
-    date_modified = models.DateField(auto_now=True)
-
+    total_budget = models.FloatField(0.00)
+    remaining_budget = models.FloatField(0.00)
     def __repr__(self):
-        return '<Category: {}>'.format(self.name)
+        return '<Budget: {}>'.format(self.name)
 
     def __str__(self):
         return '{}'.format(self.name)
 
 
 class Transaction(models.Model):
-    budget=models.ForeignKey(Budget,on_delete=models.CASCADE,related_name=User_id)
-    amount= models.FloatField(blank=Ture, null=False)
+    budget=models.ForeignKey(User,on_delete=models.CASCADE,related_name='transactions')
+    STATES = (
+        ('DEPOSIT','Deposit'),
+        ('WITHDRAWAL','Withdrawal'),
+    )
+    status = models.CharField(
+        max_length=16,
+        choices=STATES,
+        default='Withdrawal'
+    )
+    amount= models.FloatField(0.00,blank=True, null=False)
     description= models.CharField(max_length=256, default='Untitied')
-type: Choices(withdrawal, deposit)
+    def __repr__(self):
+        return '<Transaction: {} | {}'.format(self.status, self.amount)
 
 
-
-
-
-@receiver(models.signals.post_save, sender=Card)
-def set_card_completed_date(sender, instance, **kwargs):
-    """Update the date completed if completed."""
-    if instance.date_completed == 'Complete' and not instance.date_completed:
-        instance.date_completed = timezone.now()
-        instance.save()

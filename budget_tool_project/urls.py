@@ -24,7 +24,7 @@ urlpatterns = [
     path('accounts/', include('django_registration.backends.activation.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('', home_view, name='home'),
-    # path('board/', include('board.urls')),
+    path('budgets/', include('budgets.urls')),
 ]
 
 if settings.DEBUG:
