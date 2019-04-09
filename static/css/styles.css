@@ -1,0 +1,43 @@
+nav li{
+    text-decoration: none;
+    
+}
+
+header{
+    border: 2px solid black;
+
+}
+nav ul{
+    display: flex;
+    flex-direction:  row;
+    justify-content: space-around;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.book_detail, .book_list{
+    text-align: center;
+}
+h1,h2,h3{
+    text-align:center;
+}
+#book_lender_heading{
+    width:50%;
+    display:inline-block;
+    text-justify: left;
+}
+#user_heading{
+    padding-right: 5%;
+    margin-top:0;
+    float:right;
+    text-justify: right;
+    color:gray
+}
+#user_image{
+    display:inline-block;
+    height:30px;
+    border-radius: 25%;
+}
+span{
+    width:fit-content;
+}

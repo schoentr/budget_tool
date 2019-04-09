@@ -8,13 +8,13 @@ autopep8 = "*"
 
 [packages]
 django = "*"
-pandas = "*"
-sqlalchemy = "*"
+django-registration = "*"
+"psycopg2-binary" = "*"
+gunicorn = "*"
+factory-boy = "*"
+ipython = "*"
+
 pep8 = "*"
-psycopg2-binary = "*"
-libsass = "*"
-django-sass-processor = "*"
-django-redis = "*"
 
 [requires]
 python_version = "3.7"
