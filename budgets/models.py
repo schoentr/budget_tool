@@ -8,8 +8,8 @@ from django.db import models
 class Budget(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='budgets')
     name = models.CharField(max_length=180, default='Untitled')
-    total_budget = models.FloatField(0.00)
-    remaining_budget = models.FloatField(0.00)
+    total_budget = models.FloatField()
+    remaining_budget = models.FloatField()
     def __repr__(self):
         return '<Budget: {}>'.format(self.name)
 
@@ -18,7 +18,7 @@ class Budget(models.Model):
 
 
 class Transaction(models.Model):
-    budget=models.ForeignKey(User,on_delete=models.CASCADE,related_name='transactions')
+    budget=models.ForeignKey(Budget,on_delete=models.CASCADE,related_name='transactions')
     STATES = (
         ('DEPOSIT','Deposit'),
         ('WITHDRAWAL','Withdrawal'),
@@ -28,7 +28,7 @@ class Transaction(models.Model):
         choices=STATES,
         default='Withdrawal'
     )
-    amount= models.FloatField(0.00,blank=True, null=False)
+    amount= models.FloatField(blank=True, null=False)
     description= models.CharField(max_length=256, default='Untitied')
     def __repr__(self):
         return '<Transaction: {} | {}'.format(self.status, self.amount)
