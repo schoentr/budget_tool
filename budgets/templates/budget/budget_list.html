@@ -2,15 +2,19 @@
 
 {% block content %}
 <div class="budget_list">
-{% for budget in budgets %}
-<div class="status_{{ budget }}">
+  <p><a href="{% url "budget_add" %}">Add New Budget</a></p>
+  <p><a href="{% url "transaction_add" %}">Add New Transaction</a></p>
+  <div class="float">
+  {% for budget in budgets %}
+  <section class="status_{{ budget }}, budget">
   <h2>{{ budget }}</h2>
   {% for transaction in transactions %}
     {% if transaction.budget == budget %}
-    <p><a href="{% url "transaction_detail" id=transaction.id %}">{{ transaction.description }}</a></p>
+    <p ><a class={{transaction.status}} href="{% url "transaction_detail" id=transaction.id %}" >{{ transaction.description }}</a></p>
     {% endif %}
   {% endfor %}
-</div>
+  </section>
+  </div>
 {% endfor %}
 </div>
 {% endblock content %}

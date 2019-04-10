@@ -1,6 +1,6 @@
 nav li{
     text-decoration: none;
-    
+
 }
 
 header{
@@ -40,4 +40,16 @@ h1,h2,h3{
 }
 span{
     width:fit-content;
+}
+.DEPOSIT{
+    color:green;
+}
+.WITHDRAWAL{
+    color:red;
+}
+
+
+a{
+    display: block;
+    text-align: center;
 }

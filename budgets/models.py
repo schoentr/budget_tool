@@ -1,15 +1,19 @@
 
 from django.contrib.auth.models import User
 from django.dispatch import receiver
-from django.utils import timezone
 from django.db import models
 
 
 class Budget(models.Model):
+    """This is the model for a budget
+
+    """
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='budgets')
     name = models.CharField(max_length=180, default='Untitled')
     total_budget = models.FloatField()
     remaining_budget = models.FloatField()
+
     def __repr__(self):
         return '<Budget: {}>'.format(self.name)
 
@@ -18,6 +22,11 @@ class Budget(models.Model):
 
 
 class Transaction(models.Model):
+    """This is the model for a Transaction
+
+    """
+
+
     budget=models.ForeignKey(Budget,on_delete=models.CASCADE,related_name='transactions')
     STATES = (
         ('DEPOSIT','Deposit'),
