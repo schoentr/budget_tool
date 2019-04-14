@@ -19,20 +19,21 @@ class BudgetFactory(factory.django.DjangoModelFactory):
     """Create a test category for writing tests."""
 
     class Meta:
-        model = Category
+        model = Budget
 
     user = factory.SubFactory(UserFactory)
-    total_budget = factory.Faker.numerify(text="####")
-    description = factory.Faker('paragraph')
+    name= factory.Faker('word')
+    total_budget = 123.45
+    remaining_budget = 123.00
 
 
 class TransactionFactory(factory.django.DjangoModelFactory):
     """Create a test card for writing tests."""
 
     class Meta:
-        model = Card
+        model = Transaction
 
     budget = factory.SubFactory(BudgetFactory)
 
-    amount = factory.Faker()
+    amount = 11.00
     description = factory.Faker('paragraph')
