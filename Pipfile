@@ -13,8 +13,8 @@ django-registration = "*"
 gunicorn = "*"
 factory-boy = "*"
 ipython = "*"
-
 pep8 = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"

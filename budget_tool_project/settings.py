@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    # 'corsheaders',
+    'budgets_api',
     'budget_tool_project',
     'budgets'
 ]
@@ -136,3 +140,16 @@ LOGIN_REDIRECT_URL = '/'
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Django REST Framework Settings
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.TokenAuthentication',
+   )
+}
+
+# CORS_ORIGIN_WHITELIST = tuple(
+#    os.environ.get(
+#        'CORS_ORIGIN_WHITELIST',
+#        'localhost',
+#    ).split()
+# )
