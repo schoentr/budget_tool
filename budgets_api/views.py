@@ -1,9 +1,7 @@
-from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
-from budgets.models import Budget, Transaction
-from .serializers import UserSerializer, User, BudgetSerializer, TransactionSerializer
+from .serializers import UserSerializer, User, BudgetSerializer, TransactionSerializer,Budget,Transaction
 
 
 class RegisterApiView(generics.CreateAPIView):
@@ -43,7 +41,6 @@ class BudgetDetailAPIView(generics.RetrieveAPIView):
 
 
 class TransactionListAPIView(generics.ListCreateAPIView):
-
     permission_classes = (IsAuthenticated,)
     authentication_classes = (TokenAuthentication,)
     serializer_class = TransactionSerializer

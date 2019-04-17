@@ -7,7 +7,13 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'email', 'password', 'first_name', 'last_name')
+        fields = (
+            'id',
+            'username',
+            'email',
+            'password',
+            'first_name',
+            'last_name')
 
     def create(self, validated_data):
         user = super().create({
@@ -19,15 +25,15 @@ class UserSerializer(serializers.ModelSerializer):
         user.save()
         return user
 class BudgetSerializer(serializers.HyperlinkedModelSerializer):
-    owner = serializers.ReadOnlyField(source = 'user.username')
-    user = serializers.HyperlinkedRelatedField(view_name='user-detail', read_only=True)
+    user = serializers.ReadOnlyField(source = 'user.username')
+    user = serializers.HyperlinkedRelatedField(view_name='user_detail', read_only=True)
     class Meta:
         model = Budget
-        fields =  ('id', 'owner', 'user', 'name', 'total_budget')
+        fields =  ('id',  'user', 'name', 'total_budget', 'remaining_budget')
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
-    budget = serializers.HyperlinkedRelatedField(view_name='budget-detail-api', read_only=True)
+    budget = serializers.HyperlinkedRelatedField(view_name='budget_detail_api', read_only=True)
 
     class Meta:
         model = Transaction
-        fields = ('id', 'budget', 'type_of', 'amount', 'description')
+        fields = ('id', 'budget', 'status', 'amount', 'description')
